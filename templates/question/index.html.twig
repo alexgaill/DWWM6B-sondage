@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="my-3 text-center">
+		<h1>Liste des questions</h1>
+	</div>
+	<div class="col-3 position-absolute end-0 me-3">
+		{{form(form)}}
+		</div>
+		<div class="text-center">
+			{% if questions %}
+				<ul>
+					{% for question in questions %}
+						<li>
+							<a href="{{ path('update_question', {id: question.id}) }}" class='text-dark text-decoration-none'>{{ question.title }}</a>
+							|
+							<span class="text-secondary">sondage:
+								{{question.sondage.title}}</span>
+						</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<h2>Aucune question pour le moment</h2>
+			{% endif %}
+		</div>
+	{% endblock %}

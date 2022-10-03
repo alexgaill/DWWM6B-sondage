@@ -41,6 +41,11 @@ class QuestionController extends AbstractController
     {
         $repository = $this->manager->getRepository(Question::class);
         $question = $repository->find($id);
+
+        if (!$question) {
+            throw $this->createNotFoundException("Question non trouvée");
+        }
+
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
 

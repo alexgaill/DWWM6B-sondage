@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="my-3 text-center">
+		<h1>Liste des réponses</h1>
+	</div>
+	<div class="col-3 position-absolute end-0 me-3">
+		{{form(form)}}
+		</div>
+		<div class="text-center">
+			{% if reponses %}
+				<ul>
+					{% for reponse in reponses %}
+						<li>
+							<a href="{{ path('update_reponse', {id: reponse.id}) }}" class='text-dark text-decoration-none'>{{ reponse.title }}</a>
+							|
+							<span class="text-secondary">question:
+								{{reponse.question.title}}</span>
+						</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+				<h2>Aucune réponse pour le moment</h2>
+			{% endif %}
+		</div>
+	{% endblock %}

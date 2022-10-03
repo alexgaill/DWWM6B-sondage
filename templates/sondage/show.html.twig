@@ -13,6 +13,8 @@
 						{{reponse.title}}
 						|
 						<span class="text-secondary">{{reponse.score}}</span>
+						|
+						<a href="{{ path('up_reponse', { id: reponse.id }) }}"><button class="btn btn-success">Voter</button></a>
 					</p>
 				{% else %}
 					<p class="text-warning">Aucune réponse n'a encore été associée</p>

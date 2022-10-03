@@ -12,7 +12,7 @@
 		<h2>Voici la liste de nos sondages</h2>
 		<div class="d-flex flex-wrap">
 			{% for sondage in sondages %}
-				<div class="card" style="width: 18rem;">
+				<div class="card m-3" style="width: 18rem;">
                     <h3>{{sondage.title}}</h3>
 					<div class="card-body">
                     {% for question in sondage.questions %}

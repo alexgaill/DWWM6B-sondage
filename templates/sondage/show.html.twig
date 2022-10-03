@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="my-3 text-center">
+		<h1>{{sondage.title}}</h1>
+	</div>
+	<div>
+		{% for question in sondage.questions %}
+			<div class="mb-3">
+				<h4>{{ question.title }}</h4>
+				{% for reponse in question.reponses %}
+					<p>
+						{{reponse.title}}
+						|
+						<span class="text-secondary">{{reponse.score}}</span>
+					</p>
+				{% else %}
+					<p class="text-warning">Aucune réponse n'a encore été associée</p>
+				{% endfor %}
+			</div>
+		{% else %}
+			<h4 class="text-warning">Aucune question n'a encore été associée</h4>
+		{% endfor %}
+	</div>
+{% endblock %}

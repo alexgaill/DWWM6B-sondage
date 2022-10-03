@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="my-3 text-center">
+		<h1>Sondages à gogo</h1>
+		<p class="text-success">Bienvenue sur le site répertoriant les meilleurs sondages</p>
+	</div>
+    <div class="col-3 position-absolute end-0 me-3">
+        {{form(form)}}
+    </div>
+	<div class="text-center">
+		<h2>Voici la liste de nos sondages</h2>
+		<div class="d-flex flex-wrap">
+			{% for sondage in sondages %}
+				<div class="card" style="width: 18rem;">
+                    <h3>{{sondage.title}}</h3>
+					<div class="card-body">
+                    {% for question in sondage.questions %}
+                        <div class="mb-3">
+                            <h4 class="card-title">{{ question.title }}</h4>
+                            {% for reponse in question.reponses %}
+                                <p class="card-text">
+                                    {{reponse.title}} | <span class="text-secondary">{{reponse.score}}</span>
+                                </p>
+                            {% else %}
+                                <p class="text-warning">Aucune réponse n'a encore été associée</p>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <h4 class="text-warning">Aucune question n'a encore été associée</h4>
+                    {% endfor %}
+						<a href="{{ path('show_sondage', {id: sondage.id}) }}" class="btn btn-primary">Participer</a>
+					</div>
+				</div>
+			{% else %}
+				<h3 class="text-info mx-auto">Aucun sondage n'a encore été créé.</h3>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}
